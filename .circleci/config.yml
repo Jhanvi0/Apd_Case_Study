@@ -13,6 +13,7 @@ jobs:
             python -m venv venv
             source venv/bin/activate
             pip install --upgrade pip
+            sed -i '/MarkupSafe==3.0.2/d' requirements.txt
             pip install -r requirements.txt
             pip install pytest  # just to be extra sure it's installed
 
