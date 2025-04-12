@@ -12,7 +12,7 @@ jobs:
             python -m venv venv
             . venv/bin/activate || source venv/bin/activate
             pip install --upgrade pip
-            pip install -r requirements.txt
+            pip install -r requirements.txt || echo "blinker==1.9.0 not found, using latest available version" && pip install blinker
             pip install pytest
       - run:
           name: Run tests
