@@ -6,22 +6,23 @@ jobs:
       - image: circleci/python:3.8
     steps:
       - checkout
-
       - run:
-          name: Set up virtual environment and install dependencies
+          name: Install dependencies
           command: |
             python -m venv venv
             source venv/bin/activate
-            pip install --upgrade pip
             pip install -r requirements.txt
-            pip install pytest  # just to be extra sure it's installed
-
+      - run:
+          name: Install pytest
+          command: |
+            source venv/bin/activate
+            pip install pytest
       - run:
           name: Run tests
           command: |
             source venv/bin/activate
-            pytest -v tests/
-
+            pytest tests/
+          
 workflows:
   version: 2
   test-deploy:
