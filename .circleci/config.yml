@@ -12,17 +12,14 @@ jobs:
             python -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
-      - run:
-          name: Install pytest
-          command: |
-            source venv/bin/activate
-            pip install pytest
+            pip install pytest  # Ensure pytest is installed
       - run:
           name: Run tests
           command: |
             source venv/bin/activate
             pytest tests/
-          
+          environment:
+            PYTHONPATH: .
 workflows:
   version: 2
   test-deploy:
