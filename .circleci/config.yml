@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python -m venv venv
+            . venv/bin/activate || source venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            pip install pytest
+      - run:
+          name: Run tests
+          command: |
+            . venv/bin/activate || source venv/bin/activate
+            pytest tests/
