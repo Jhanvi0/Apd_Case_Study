@@ -19,3 +19,9 @@ jobs:
           command: |
             . venv/bin/activate || source venv/bin/activate
             pytest tests/
+
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - test
